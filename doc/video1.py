@@ -1,10 +1,13 @@
+from __future__ import print_function
 # To demonstrate how easy it is to create interactive shells with CLY, I'm
 # going to write a simple interface to BeautifulSoup.
 
+from future import standard_library
+standard_library.install_aliases()
 import sys
 import re
 from cly.all import *
-from urllib2 import urlopen
+from urllib.request import urlopen
 from BeautifulSoup import BeautifulSoup
 
 # I'll start with three basic commands:
@@ -29,11 +32,11 @@ def fetch(uri):
 
 def find_tag(tag):
     for t in page(tag):
-        print t
+        print(t)
 
 def find_text(text):
     for t in page(text=re.compile(text)):
-        print t
+        print(t)
 
 # First we define the grammar. Now we'll fill it out a bit more. Each Node
 # defines a token in the grammar. 
